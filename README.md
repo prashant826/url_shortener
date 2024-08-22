@@ -7,7 +7,7 @@ You need to design this kind of web service where if a user gives a long URL the
 For example, shortening the given URL through TinyURL:
 https://www.abc_sample_webiste.com/how-to-code-better/practice-daily
 
-output - http://bit.ly/3uQqImU
+output - http://bit.ly/<Q6ab88j>  -  7 to 8 character 
 
 
 front -> long_url, --> short with the help encoding --> check this is the unique short url -> database store
