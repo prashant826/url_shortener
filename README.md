@@ -8,8 +8,6 @@ For example, shortening the given URL through TinyURL:
 https://www.abc_sample_webiste.com/how-to-code-better/practice-daily
 
 output - http://bit.ly/[a-zA-z0-9]    7 to 8 character 
-
-
 front -> long_url, --> short with the help encoding --> check this is the unique short url -> database store
 
 # HLD (High level design) #
@@ -18,12 +16,12 @@ Storing the generated URL in database.
 
 # Requirements Gathering #
 
-# Functional req
+Functional req
 1. Creating a unique alias for the long url. <br />
 2. short urls service should directly hit the original link. <br />
 3. Link will expire after certain span of time <br />
 
-# Non functional req #
+Non functional req
 1. Highly available system. If service is down redirection fails.
 2. minimal latency.
 3. shortened link should not be predictable.
@@ -65,17 +63,15 @@ server3 = 2 lacs - 3 lacs
 If a server goes down will be short on very low integers, But zookeeper service manages the add new server whenever old one is exhausted.
 Also the new unused range is given to newly created server.
 
-
 # Redis #
 
-Once user will create it's short url. They will directly try to access the original link for confirmation.
-So using redis to cache the recently created url will be very useful and avoid db task.
-If did not find the the data inside cache. We can also implement elasticSearch.
+Once user will create it's short url. They will directly try to access the original link for confirmation. <br />
+So using redis to cache the recently created url will be very useful and avoid db task.<br />
+If did not find the the data inside cache. We can also implement elasticSearch. <br />
 If we still not able to find the record then probably we can let db to give us the url. 
-
-
 
 # Implementation #
 
-Implementation of above application is done by using django.
-For database we are going to use rdbms.
+Implementation of above application is done by using django. <br />
+For database we are going to use rdbms. <br />
+Frontend can be done in React or next.js .
