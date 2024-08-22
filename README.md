@@ -7,21 +7,21 @@ You need to design this kind of web service where if a user gives a long URL the
 For example, shortening the given URL through TinyURL:
 https://www.abc_sample_webiste.com/how-to-code-better/practice-daily
 
-output - http://bit.ly/<Q6ab88j>  -  7 to 8 character 
+output - http://bit.ly/[a-zA-z0-9]    7 to 8 character 
 
 
 front -> long_url, --> short with the help encoding --> check this is the unique short url -> database store
 
 # --------- HLD (High level design) ----------
-generating URL with the help of encoding technique.
+generating URL with the help of encoding technique.<br />
 Storing the generated URL in database.
 
 # ------- Requirements Gathering -------------
 
 # Functional req
-1. Creating a unique alias for the long url.
-2. short urls service should directly hit the original link.
-3. Link will expire after certain span of time
+1. Creating a unique alias for the long url. <br />
+2. short urls service should directly hit the original link. <br />
+3. Link will expire after certain span of time <br />
 
 # Non functional req
 1. Highly available system. If service is down redirection fails.
