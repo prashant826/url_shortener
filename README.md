@@ -7,10 +7,11 @@ You need to design this kind of web service where if a user gives a long URL the
 For example, shortening the given URL through TinyURL:
 https://www.abc_sample_webiste.com/how-to-code-better/practice-daily
 
-output - http://bit.ly/[a-zA-z0-9]    7 to 8 character 
-front -> long_url, --> short with the help encoding --> check this is the unique short url -> database store
+output - http://bit.ly/[a-zA-z0-9] - (7 to 8 character). <br />
 
 # HLD (High level design) #
+
+front -> long_url, --> short with the help encoding --> check this is the unique short url -> database store. <br />
 generating URL with the help of encoding technique.<br />
 Storing the generated URL in database.
 
@@ -28,25 +29,23 @@ Non functional req
 
 # Data capacity (minimal latency) #
   Let’s assume our service has 20 M new URL shortenings per month. 
-  Let’s assume we store every URL shortening request (and associated shortened link) for 5 years . 
+  Let’s assume we store every URL shortening request (and associated shortened link) for 5 years . <br /> 
  
-  Calculation  = 20 Million * 5 years * 12 months = 1.2 B records
+  Calculation  = 20 Million * 5 years * 12 months = 1.2 B records <br />
  
-  For this period the service will generate about 1.2 B records.
+  For this period the service will generate about 1.2 B records. <br />
 
-  Consider the average long URL size of 2KB ie for 2048 characters.
-  Short URL size: 17 Bytes for 17 characters
-  created_at- 7 bytes
-  1 records will hold approx = 2.024 KB of data
+  Consider the average long URL size of 2KB ie for 2048 characters. <br />
+  Short URL size: 17 Bytes for 17 characters. <br />
+  created_at- 7 bytes. <br />
+  1 records will hold approx = 2.024 KB of data <br />
 
   As per the problem statement 20 M active user. Data capacity will be
-  20000000 * 2.024 = 60780000 KB = 44.08 GB per month
+  20000000 * 2.024 = 60780000 KB = 44.08 GB per month. <br />
 
+encoding = [A-Z][a-z][0-9] = 26 + 26+ 10 = base 62. <br />
 
-
-encoding = [A-Z][a-z][0-9] = 26 + 26+ 10 = base 62
-
-short_url of lenght 7 can generate = 62 ^7 = 3.5 trillion.
+short_url of lenght 7 can generate = 62 ^7 = 3.5 trillion. <br />
 
 Which can take more than 1000 years to exhaust completely considering the above load.
 
