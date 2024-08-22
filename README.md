@@ -1,4 +1,4 @@
-# --------- URL shortner service -----------
+# URL shortner service #
 problem statement:
 How Would You Design a URL Shortener Service Like TinyURL?
 URL shortening services like bit.ly or TinyURL are very popular to generate shorter aliases for long URLs. 
@@ -12,23 +12,23 @@ output - http://bit.ly/[a-zA-z0-9]    7 to 8 character
 
 front -> long_url, --> short with the help encoding --> check this is the unique short url -> database store
 
-# --------- HLD (High level design) ----------
+# HLD (High level design) #
 generating URL with the help of encoding technique.<br />
 Storing the generated URL in database.
 
-# ------- Requirements Gathering -------------
+# Requirements Gathering #
 
 # Functional req
 1. Creating a unique alias for the long url. <br />
 2. short urls service should directly hit the original link. <br />
 3. Link will expire after certain span of time <br />
 
-# Non functional req
+# Non functional req #
 1. Highly available system. If service is down redirection fails.
 2. minimal latency.
 3. shortened link should not be predictable.
 
-# --------- Data capacity (minimal latency) ----------
+# Data capacity (minimal latency) #
   Let’s assume our service has 20 M new URL shortenings per month. 
   Let’s assume we store every URL shortening request (and associated shortened link) for 5 years . 
  
@@ -36,8 +36,16 @@ Storing the generated URL in database.
  
   For this period the service will generate about 1.2 B records.
 
+  Consider the average long URL size of 2KB ie for 2048 characters.
+  Short URL size: 17 Bytes for 17 characters
+  created_at- 7 bytes
+  1 records will hold approx = 2.024 KB of data
 
-# ---------- Zookeepeer service ---------------
+  As per the problem statement 20 M active user. Data capacity will be
+  20000000 * 2.024 = 60780000 KB = 44.08 GB per month
+
+
+
 encoding = [A-Z][a-z][0-9] = 26 + 26+ 10 = base 62
 
 short_url of lenght 7 can generate = 62 ^7 = 3.5 trillion.
@@ -57,7 +65,6 @@ server3 = 2 lacs - 3 lacs
 If a server goes down will be short on very low integers, But zookeeper service manages the add new server whenever old one is exhausted.
 Also the new unused range is given to newly created server.
 
-# ----------- Redis -------------
 
 # Redis #
 
@@ -68,6 +75,7 @@ If we still not able to find the record then probably we can let db to give us t
 
 
 
-# --------- Implementation -------------
+# Implementation #
 
 Implementation of above application is done by using django.
+For database we are going to use rdbms.
